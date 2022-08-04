@@ -1,1 +1,0 @@
-# Python and R Programming
