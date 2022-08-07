@@ -10,5 +10,3 @@ https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
 
 Upload extra jupyter notebooks on GitHub
 Done
-
-Extra matplotlib examples
