@@ -1,0 +1,14 @@
+How to secify to change the probability while generating random numbers using numpy
+https://pynative.com/python-weighted-random-choices-with-probability/
+
+
+Why id is being changed in numpy
+https://stackoverflow.com/questions/40196986/numpy-arrays-changing-id
+
+How to deploy python model using Python Flask
+https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
+
+Upload extra jupyter notebooks on GitHub
+Done
+
+Extra matplotlib examples
