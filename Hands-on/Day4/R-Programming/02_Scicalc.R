@@ -2,9 +2,11 @@
 #-----------------------
 #Mathematical Operations and Vectors
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1:5
+6:20
 
+1:5 + 6:20         #look, no loops!
 
-1:5 + 6:10         #look, no loops!
 c(1, 3, 6, 10, 15) + c(0, 1, 3, 6, 10)
 
 
@@ -13,11 +15,12 @@ median(1:5)
 
 
 sum(1, 2, 3, 4, 5)
-median(1, 2, 3, 4, 5)  #this throws an error
+median(1:15)  #this throws an error
 
 
 c(2, 3, 5, 7, 11, 13) - 2            #subtraction
 -2:2 * -2:2                          #multiplication
+
 identical(2 ^ 3, 2 ** 3)             #we can use ^ or ** for exponentiation
                                      #though ^ is more common
 1:10 / 3                             #floating point division
@@ -28,8 +31,18 @@ identical(2 ^ 3, 2 ** 3)             #we can use ^ or ** for exponentiation
 cos(c(0, pi / 4, pi / 2, pi))        #pi is a built-in constant
 exp(pi * 1i) + 1                     #Euler's formula
 factorial(7) + factorial(1) - 71 ^ 2 #5041 is a great number
-choose(5, 0:5)
 
+choose(5, 2)
+
+120/(2*6)
+
+n = 5
+r = 2
+
+factorial(r)
+factorial(n) / (factorial(n-r) * factorial(r))
+
+?choose
 
 c(3, 4 - 1, 1 + 1 + 1) == 3                #operators are vectorised too
 1:3 != 3:1
@@ -40,11 +53,14 @@ exp(1:5) < 100
 sqrt(2) ^ 2 == 2         #sqrt is the square-root function
 sqrt(2) ^ 2 - 2          #this small value is the rounding error
 
+1.414214 ^ 2
 
-all.equal(sqrt(2) ^ 2, 2)
+all.equal(1.414214 ^ 2, 2, tolerance=6.288976e-07)
 
+?all.equal
 
 all.equal(sqrt(2) ^ 2, 3)
+
 isTRUE(all.equal(sqrt(2) ^ 2, 3))
 
 
@@ -52,6 +68,7 @@ c(
   "Can", "you", "can", "a", "can", "as",
   "a", "canner", "can", "can", "a", "can?"
 ) == "can"
+
 c("A", "B", "C", "D") < "C"
 c("a", "b", "c", "d") < "C" #your results may vary
 
@@ -119,11 +136,15 @@ x | y
 
 
 x <- c(TRUE, FALSE, NA)         #the three logical values
+
 xy <- expand.grid(x = x, y = x) #get all combinations of x and y
+
+xy
+
 within(                         #make the next assignments within xy
   xy,
   {
-    and <- x & y
+    myadd <- x + y
     or  <- x | y
     not.y <- !y
     not.x <- !x

@@ -8,6 +8,7 @@ an_environment <- new.env()
 
 
 an_environment[["pythag"]] <- c(12, 15, 20, 21) #See http://oeis.org/A156683
+
 an_environment$root <- polyroot(c(6, -5, 1))
 
 
@@ -20,10 +21,12 @@ assign(
 
 an_environment[["pythag"]]
 an_environment$root
+
 get("moonday", an_environment)
 
 
 ls(envir = an_environment)
+
 ls.str(envir = an_environment)
 
 
@@ -32,18 +35,24 @@ exists("pythag", an_environment)
 
 #Convert to list
 (a_list <- as.list(an_environment))
+a_list
 # ... and back again.  Both lines of code do the same thing
 as.environment(a_list)
 list2env(a_list)
 
 
 nested_environment <- new.env(parent = an_environment)
-exists("pythag", nested_environment)
+
+name = "Atin"
+exists("name", nested_environment)
+
 exists("pythag", nested_environment, inherits = FALSE)
 
 
 non_stormers <<- c(3, 7, 8, 13, 17, 18, 21) #See http://oeis.org/A002312
+
 get("non_stormers", envir = globalenv())
+
 head(ls(envir = baseenv()), 20)
 
 
@@ -79,20 +88,25 @@ hypotenuse() #equivalent to hypotenuse(5, 12)
 
 
 formals(hypotenuse)
+
 args(hypotenuse)
+
 formalArgs(hypotenuse)
 
 
 (body_of_hypotenuse <- body(hypotenuse))
-deparse(body_of_hypotenuse)
 
+deparse(body_of_hypotenuse)
 
 normalize <- function(x, m = mean(x), s = sd(x))
 {
   (x - m) / s
 }
+
 normalized <- normalize(c(1, 3, 6, 10, 15))
+
 mean(normalized)        #almost 0!
+
 sd(normalized)
 
 
@@ -126,10 +140,12 @@ do.call(hypotenuse, list(x = 3, y = 4)) #same as hypotenuse(3, 4)
 dfr1 <- data.frame(x = 1:5, y = rt(5, 1))
 dfr2 <- data.frame(x = 6:10, y = rf(5, 1, 1))
 dfr3 <- data.frame(x = 11:15, y = rbeta(5, 1, 1))
+
 do.call(rbind, list(dfr1, dfr2, dfr3)) #same as rbind(dfr1, dfr2, dfr3)
 
 
 menage <- c(1, 0, 0, 1, 2, 13, 80) #See http://oeis.org/A000179
+
 mean(menage)
 
 
@@ -137,13 +153,17 @@ mean(c(1, 0, 0, 1, 2, 13, 80))
 
 
 x_plus_y <- function(x, y) x + y
-do.call(x_plus_y, list(1:5, 5:1))
+
+do.call(x_plus_y, list(1:5, 5:9))
+
 #is the same as
 do.call(function(x, y) x + y, list(1:5, 5:1))
 
 
 (emp_cum_dist_fn <- ecdf(rnorm(50)))
+
 is.function(emp_cum_dist_fn)
+
 plot(emp_cum_dist_fn)
 
 
@@ -160,6 +180,7 @@ f <- function(x)
   }
   g(x)
 }
+
 f(sqrt(5))      #It works! y is magically found in the environment of f
 
 
@@ -190,9 +211,15 @@ h(9)
 
 h2 <- function(x)
 {
-  if(runif(1) > 0.5) y <- 12
+  y = 2
   x * y
 }
 
 
 replicate(10, h2(9))
+
+y
+
+rm("y")
+
+

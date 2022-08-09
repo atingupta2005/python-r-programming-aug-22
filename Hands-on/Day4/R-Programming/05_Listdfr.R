@@ -17,7 +17,9 @@
 
 
 names(a_list) <- c("catalan", "months", "involutary", "arcsin")
+
 a_list
+
 (the_same_list <- list(
   catalan    = c(1, 1, 2, 5, 14, 42),
   months     = month.abb,
@@ -43,8 +45,11 @@ a_list
 
 
 is.atomic(list())
+
 is.recursive(list())
+
 is.atomic(numeric())
+
 is.recursive(numeric())
 
 
@@ -91,13 +96,14 @@ l[c(TRUE, TRUE, FALSE)]
 
 
 l[[1]]
+
 l[["first"]]
 
 
 is.list(l[1])
 is.list(l[[1]])
 
-
+l
 l$first
 l$f     #partial matching interprets 'f' as 'first'
 
@@ -141,8 +147,9 @@ as.numeric(list(1, 6, 21, 107))
   ten   = c(2, 5)
 ))
 
+prime_factors
 
-unlist(prime_factors)
+class(unlist(prime_factors))
 
 
 #Combining Lists
@@ -165,6 +172,7 @@ str(matrix_list_hybrid)
 #NULL
 #~~~~
 
+length(NaN)
 
 (uk_bank_holidays_2013 <- list(
   Jan = "New Year's Day",
@@ -187,6 +195,7 @@ length(NA)
 
 
 is.null(NULL)
+
 is.null(NA)
 
 
@@ -194,32 +203,36 @@ is.na(NULL)
 
 
 uk_bank_holidays_2013$Jan <- NULL
+
 uk_bank_holidays_2013$Feb <- NULL
 uk_bank_holidays_2013
 
 
 uk_bank_holidays_2013["Aug"] <- list(NULL)
+
 uk_bank_holidays_2013
 
 
 #Pairlists
 #~~~~~~~~~
+sd(c(5,6,8), FALSE)
 
+formals(sd)
 
 (arguments_of_sd <- formals(sd))
+
 class(arguments_of_sd)
 
 
-pairlist()
-list()
+f()
 
 
 #Data Frames
 #~~~~~~~~~~~
 
 
-Creating Data Frames
-^^^^^^^^^^^^^^^^^^^^
+#Creating Data Frames
+#^^^^^^^^^^^^^^^^^^^^
 
 
 (a_data_frame <- data.frame(
@@ -231,10 +244,15 @@ class(a_data_frame)
 
 
 y <- rnorm(5)
+
+x = letters[1:5]
+
 names(y) <- month.name[1:5]
+names(x) <- month.name[6:10]
+
 data.frame(
-  x = letters[1:5],
   y = y,
+  x = x,
   z = runif(5) > 0.5
 )
 
@@ -268,7 +286,7 @@ names(a_data_frame)
 
 
 data.frame(        #lengths 1, 2 and 4 are OK
-  x = 1,           #recycled 4 times
+  x = 1:10,           #recycled 4 times
   y = 2:3,         #recycled twice
   z = 4:7          #the longest input; no recycling
 )
@@ -276,7 +294,7 @@ data.frame(        #lengths 1, 2 and 4 are OK
 
 data.frame(       #lengths 1, 2 and 3 cause an error
   x = 1,          #lowest common multiple is 6, which
-  y = 2:3,        #is more than 3
+  y = 2:4,        #is more than 3
   z = 4:6
 )
 
@@ -305,7 +323,7 @@ a_data_frame$x[2:3]
 a_data_frame[[1]][2:3]
 a_data_frame[["x"]][2:3]
 
-
+a_data_frame
 a_data_frame[a_data_frame$y > 0 | a_data_frame$z, "x"]
 subset(a_data_frame, y > 0 | z, x)
 
@@ -332,3 +350,13 @@ merge(a_data_frame, another_data_frame, by = "x", all = TRUE)
 
 colSums(a_data_frame[, 2:3])
 colMeans(a_data_frame[, 2:3])
+a_data_frame
+
+another_data_frame <- data.frame(  #same cols as a_data_frame, different order
+  z = rlnorm(5),       #log-normally distributed numbers
+  y = rlnorm(5),       #the numbers 1 to 5, in some order
+  x = letters[3:7]
+)
+
+another_data_frame
+colSums(another_data_frame[, c("y", "z")])

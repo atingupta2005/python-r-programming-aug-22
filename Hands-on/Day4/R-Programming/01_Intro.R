@@ -27,9 +27,9 @@ apropos("[4-9]")
 
 example(plot)
 demo()         #list all demonstrations
-demo(Japanese)
+demo(smooth)
 
-
+?browseVignettes
 browseVignettes()
 
 
@@ -41,8 +41,6 @@ RSiteSearch("{Bayesian regression}")
 
 #Installing Extra Related Software
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 install.packages("installr")   #download and install the package named installr
 library(installr)              #load the installr package
 install.RStudio()              #download and install the RStudio IDE

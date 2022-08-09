@@ -26,33 +26,40 @@ class(1:5)         #unless all its values are whole numbers
 class(c("she", "sells", "seashells", "on", "the", "sea", "shore"))
 
 
-(gender <- factor(c("male", "female", "female", "male", "female")))
+(gender <- factor(c("male", "female", "female", "male", "female"), labels = c(1.999, 2.0001)))
 
+?factor
 
-levels(gender)
 nlevels(gender)
-
 
 as.integer(gender)
 
-
 gender_char <- sample(c("female", "male"), 10000, replace = TRUE)
+
+gender_char
+
 gender_fac <- as.factor(gender_char)
+
 object.size(gender_char)
 object.size(gender_fac)
-
 
 as.character(gender)
 
 
 as.raw(1:17)
+
 as.raw(c(pi, 1 + 1i, -1, 256))
+
 (sushi <- charToRaw("Fish!"))
+
 class(sushi)
 
 
 #Checking and Changing Classes
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class(sushi)
+
+is(sushi, "raw")
 
 
 if(!is(x, "some_class"))
@@ -62,9 +69,12 @@ if(!is(x, "some_class"))
 
 
 is.character("red lorry, yellow lorry")
+
 is.logical(FALSE)
+
 is.list(list(a = 1, b = 2))
 
+ls(pattern = "st$")
 
 ls(pattern = "^is", baseenv())
 
@@ -102,6 +112,11 @@ for(i in ulams_spiral) print(i)
 
 
 num <- runif(30)
+
+?runif
+
+num
+
 summary(num)
 
 
@@ -122,16 +137,20 @@ str(num)
 str(dfr)
 
 
+class(fac)
+str(fac)
+
 unclass(fac)
+str(fac)
 
+attributes(dfr)
 
-attributes(fac)
+View(new_dfr)               #no changes allowed
 
-
-View(dfr)               #no changes allowed
 new_dfr <- edit(dfr)    #changes stored in new_dfr
-fix(dfr)                #changes stored in dfr
 
+fix(dfr)                #changes stored in dfr
+View(dfr)
 
 View(head(dfr, 50))  #view first 50 rows
 

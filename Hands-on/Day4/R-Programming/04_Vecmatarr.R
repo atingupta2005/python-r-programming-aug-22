@@ -5,10 +5,12 @@
 
 
 8.5:4.5                #sequence of numbers from 8.5 down to 4.5
+
 c(1, 1:3, c(5, 8), 13) #values concatenated into single vector
 
 
 vector("numeric", 5)
+
 vector("complex", 5)
 vector("logical", 5)
 vector("character", 5)
@@ -16,6 +18,7 @@ vector("list", 5)
 
 
 numeric(5)
+
 complex(5)
 logical(5)
 character(5)
@@ -24,24 +27,31 @@ character(5)
 #Sequences
 #^^^^^^^^^
 
-
+3:12
 seq.int(3, 12) #same as 3:12
 
 
 seq.int(3, 12, 2)
+
 seq.int(0.1, 0.01, -0.01)
 
 
 n <- 0
 1:n        #not what you might expect!
-seq_len(n)
+
+length(1:0)
+
+length(seq_len(0))
 
 
 pp <- c("Peter", "Piper", "picked", "a", "peck", "of", "pickled", "peppers")
-for(i in seq_along(pp)) print(pp[i])
+
+seq_along(pp)
+
+for(i in seq_along(pp)) print(i)
 
 
-Lengths
+#Lengths
 #^^^^^^^
 
 
@@ -55,9 +65,13 @@ nchar(sn)
 
 
 poincare <- c(1, 0, 0, 0, 2, 0, 2, 0)  #See http://oeis.org/A051629
+
 length(poincare) <- 3
+
 poincare
+
 length(poincare) <- 8
+
 poincare
 
 
@@ -65,11 +79,12 @@ poincare
 #^^^^^
 
 
-c(apple = 1, banana = 2, "kiwi fruit" = 3, 4)
-
+myv = c(apple = 1, banana = 2, "kiwi fruit" = 3, 4)
 
 x <- 1:4
+
 names(x) <- c("apple", "bananas", "kiwi fruit", "")
+
 x
 
 
@@ -85,17 +100,22 @@ names(1:4)
 
 (x <- (1:5) ^ 2)
 
+x
 
 x[c(1, 3, 5)]
+
+
 x[c(-2, -4)]
+
 x[c(TRUE, FALSE, TRUE, FALSE, TRUE)]
 
 
 names(x) <- c("one", "four", "nine", "sixteen", "twenty five")
+
 x[c("one", "nine", "twenty five")]
 
 
-x[c(1, -1)]      #This doesn't make sense!
+x[c(1, -2)]      #This doesn't make sense!
 
 
 x[c(1, NA, 5)]
@@ -114,6 +134,7 @@ x[-1.9]  #-1.9 rounded to -1
 
 x[]
 
+x
 
 which(x > 10)
 
@@ -126,7 +147,8 @@ which.max(x)
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-1:5 + 1
+1:5 + 1:2
+
 1 + 1:5
 
 
@@ -137,13 +159,15 @@ which.max(x)
 
 
 rep(1:5, 3)
+
 rep(1:5, each = 3)
-rep(1:5, times = 1:5)
-rep(1:5, length.out = 7)
+
+rep(1:50, times = 1:50)
+
+rep(1:5, length.out = 70)
 
 
 rep.int(1:5, 3)  #the same as rep(1:5, 3)
-
 
 rep_len(1:5, 13)
 
@@ -165,6 +189,7 @@ rep_len(1:5, 13)
     c("un", "deux")
   )
 ))
+
 class(three_d_array)
 
 
@@ -187,7 +212,9 @@ class(a_matrix)
     c("ein", "zwei", "drei")
   )
 ))
+
 identical(two_d_array, a_matrix)
+
 class(two_d_array)
 
 
@@ -223,17 +250,23 @@ length(a_matrix)
 
 
 dim(a_matrix) <- c(6, 2)
+
 a_matrix
 
+v1 = c(1,2)
+
+ncol(v1)
+NCOL(v1)
 
 identical(nrow(a_matrix), NROW(a_matrix))
+
 identical(ncol(a_matrix), NCOL(a_matrix))
 recaman <- c(0, 1, 3, 6, 2, 7, 13, 20) #See http://oeis.org/A005132
 nrow(x)
 NROW(x)
 ncol(x)
 NCOL(x)
-dim(x)     #There is no DIM(X)
+dim(a_matrix)     #There is no DIM(X)
 
 
 #Row, Column and Dimension Names
@@ -241,9 +274,13 @@ dim(x)     #There is no DIM(X)
 
 
 rownames(a_matrix)
+
 colnames(a_matrix)
+
 dimnames(a_matrix)
+
 rownames(three_d_array)
+
 colnames(three_d_array)
 dimnames(three_d_array)
 
@@ -271,10 +308,12 @@ a_matrix[, c("zwei", "drei")]  #all the second and third columns
     c("vier", "funf", "sechs")
   )
 ))
+
 c(a_matrix, another_matrix)
 
 
 cbind(a_matrix, another_matrix)
+
 rbind(a_matrix, another_matrix)
 
 
@@ -294,12 +333,17 @@ t(a_matrix)
 
 
 a_matrix %*% t(a_matrix)  #inner multiplication
+
 1:3 %o% 4:6               #outer multiplication
+
 outer(1:3, 4:6)           #same
 
 
 (m <- matrix(c(1, 0, 1, 5, -3, 1, 2, 4, 7), nrow = 3))
+
 m ^ -1
+
 (inverse_of_m <- solve(m))
+
 m %*% inverse_of_m
 
