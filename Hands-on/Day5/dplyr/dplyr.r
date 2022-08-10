@@ -17,7 +17,7 @@ library(readr)
 #help("mpg")
 
 df <- mpg
-#View(df) # check table
+View(df) # check table
 print(df) # print to console
 str(df) # table structure
 nrow(df); ncol(df) # rows ~ cols
@@ -32,7 +32,7 @@ select(df, manufacturer, model, year) # just extract columns
 
 df.car.info <- select(df, manufacturer, model, year)
 
-df.car.info
+class(df.car.info)
 
 rm(df.car.info)
 
@@ -83,6 +83,7 @@ df <- mutate(df,
 # transmute() - Create new variable and drop other variables
 transmute(df,
           `avg miles per gallon` = (cty + hwy) / 2)
+
 transmute(df,
           car = paste(manufacturer, model, sep = " "),
           `cyl / trans` = paste(cyl, " cylinders", " / ", trans, " transmission", sep = ""))
@@ -268,6 +269,7 @@ table.long1 <- pivot_longer(table.wide,
                             names_to = "type", 
                             values_to = "count", 
                             values_drop_na = T)
+table.wide
 table.long1
 
 # Now let's pivot our car data set table
@@ -321,16 +323,16 @@ table.sep <- table %>%
   arrange(year, month, dayofmonth)
   
 # more elegant way using mutate_at!
+table
 table.sep_ <- table %>% 
   separate(data = ., 
            col = date, 
            into = c("year", "month", "dayofmonth"), 
            sep = "-") %>% 
-  mutate_at(.tbl = .,                         # which table? - . stands for table in the pipe line!
+  mutate_all(.tbl = .,                         # which table? - . stands for table in the pipe line!
             .vars = c("month", "dayofmonth"), # which variables are mutated?
             .funs = as.numeric) %>%           # which functions is applied?
   arrange(year, month, dayofmonth)
-
 
 # unite() - combine multiple columns into one column
 
