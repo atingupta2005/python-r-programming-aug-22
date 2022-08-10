@@ -14,8 +14,9 @@ if(FALSE) message("It wasn't true!")
 
 if(NA) message("Who knows if it was true?")
 
-
-if(is.na(NA)) message("The value is missing!")
+x = NA
+x
+if(is.na(5)) message("The value is missing!")
 
 
 if(runif(1) > 0.5) message("This message appears with a 50% chance.")
@@ -27,7 +28,8 @@ if(x > 2)
   y <- 2 * x
   z <- 3 * y
 }
-
+y
+z
 
 if(FALSE)
 {
@@ -76,10 +78,12 @@ Vectorised if
 ^^^^^^^^^^^^^
 
 
-if(c(TRUE, FALSE)) message("two choices")
+if(c(FALSE, TRUE)) message("two choices")
 
+x_r = rbinom(10, 1, 0.5)
+x_r
 
-ifelse(rbinom(10, 1, 0.5), "Head", "Tail")
+ifelse(x_r, "Head", "Tail")
 
 
 (yn <- rep.int(c(TRUE, FALSE), 6))
@@ -95,7 +99,7 @@ Multiple Selection
 
 
 (greek <- switch(
-  "gamma",
+  "alpha",
   alpha = 1,
   beta  = sqrt(4),
   gamma =
@@ -107,7 +111,7 @@ Multiple Selection
 
 
 (greek <- switch(
-  "delta",
+  "beta",
   alpha = 1,
   beta  = sqrt(4),
   gamma =
@@ -118,17 +122,9 @@ Multiple Selection
 ))
 
 
-(greek <- switch(
-  "delta",
-  alpha = 1,
-  beta  = sqrt(4),
-  gamma =
-  {
-    a <- sin(pi / 3)
-    4 * a ^ 2
-  },
-  4
-))
+(
+  
+greek
 
 
 switch(
@@ -139,7 +135,10 @@ switch(
   "fourth"
 )
 
+x_c = c("first","second","third","fourth")
+x_c[3]
 
+  
 switch(
   as.character(2147483647),
   "2147483647" = "a big number",
@@ -241,7 +240,7 @@ for(i in 1:5)
   j <- i ^ 2
   message("j = ", j)
 }
-
+month.name
 
 for(month in month.name)
 {

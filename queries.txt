@@ -10,3 +10,11 @@ https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
 
 Upload extra jupyter notebooks on GitHub
 Done
+
+Connect R with Jupyter notebooks
+
+Solve stats problems using R
+
+Quiz and Excersizec
+
+apply and sapply

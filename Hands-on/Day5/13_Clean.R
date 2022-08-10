@@ -1,7 +1,7 @@
-Cleaning And Transforming
--------------------------
-Cleaning Strings
-~~~~~~~~~~~~~~~~
+#Cleaning And Transforming
+#-------------------------
+#Cleaning Strings
+#~~~~~~~~~~~~~~~~
 
 
 yn_to_logical <- function(x)
@@ -12,16 +12,24 @@ yn_to_logical <- function(x)
   y
 }
 
+alpe_d_huez
+
+alpe_d_huez$DrugUse
 
 alpe_d_huez$DrugUse <- yn_to_logical(alpe_d_huez$DrugUse)
 
+alpe_d_huez$DrugUse
 
 data(english_monarchs, package = "learningr")
+
 head(english_monarchs)
 
 
 library(stringr)
 multiple_kingdoms <- str_detect(english_monarchs$domain, fixed(","))
+
+multiple_kingdoms
+
 english_monarchs[multiple_kingdoms, c("name", "domain")]
 
 
@@ -30,59 +38,47 @@ english_monarchs$name[multiple_rulers & !is.na(multiple_rulers)]
 
 
 individual_rulers <- str_split(english_monarchs$name, ", | and ")
+
 head(individual_rulers[sapply(individual_rulers, length) > 1])
 
 
 th <- c("th", "ð", "þ")
-sapply(         #can also use laply from plyr
-  th,
-  function(th)
-  {
-    sum(str_count(english_monarchs$name, th))
-  }
-)
-
-
-english_monarchs$new_name <- str_replace_all(
-  english_monarchs$name,
-  "[ðþ]",
-  "th"
-)
-
 
 gender <- c(
   "MALE", "Male", "male", "M", "FEMALE",
   "Female", "female", "f", NA
 )
-clean_gender <- str_replace(
+
+(clean_gender <- str_replace(
   gender,
-  ignore.case("^m(ale)?$"),
+  "male",
   "Male"
 )
+)
+
 (clean_gender <- str_replace(
   clean_gender,
-  ignore.case("^f(emale)?$"),
+  "female",
   "Female"
 ))
 
 
-Manipulating Data Frames
-~~~~~~~~~~~~~~~~~~~~~~~~
+#Manipulating Data Frames
+#~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Adding and Replacing Columns
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#Adding and Replacing Columns
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-english_monarchs$length.of.reign.years <-
-  english_monarchs$end.of.reign - english_monarchs$start.of.reign
+(english_monarchs$length.of.reign.years <-
+  english_monarchs$end.of.reign - english_monarchs$start.of.reign)
 
 
 english_monarchs$length.of.reign.years <- with(
   english_monarchs,
   end.of.reign - start.of.reign
 )
-
 
 english_monarchs <- within(
   english_monarchs,
@@ -91,6 +87,7 @@ english_monarchs <- within(
   }
 )
 
+english_monarchs$length.of.reign.years
 
 english_monarchs <- within(
   english_monarchs,
@@ -100,49 +97,10 @@ english_monarchs <- within(
   }
 )
 
+english_monarchs$reign.was.more.than.30.years
 
-english_monarchs <- mutate(
-  english_monarchs,
-  length.of.reign.years        = end.of.reign - start.of.reign,
-  reign.was.more.than.30.years = length.of.reign.years > 30
-)
-
-
-Dealing With Missing Values
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-data("deer_endocranial_volume", package = "learningr")
-has_all_measurements <- complete.cases(deer_endocranial_volume)
-deer_endocranial_volume[has_all_measurements, ]
-
-
-na.omit(deer_endocranial_volume)
-
-
-na.fail(deer_endocranial_volume)
-
-
-Converting between wide and long form
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-deer_wide <- deer_endocranial_volume[, 1:5]
-
-
-library(reshape2)
-deer_long <- melt(deer_wide, id.vars = "SkullID")
-head(deer_long)
-
-
-melt(deer_wide, measure.vars = c("VolCT", "VolBead", "VolLWH", "VolFinarelli"))
-
-
-deer_wide_again <- dcast(deer_long, SkullID ~ variable)
-
-
-Using SQL
-^^^^^^^^^
+#Using SQL
+#^^^^^^^^^
 
 
 install.packages("sqldf")
@@ -166,8 +124,8 @@ query <-
 sqldf(query)
 
 
-Sorting
-~~~~~~~
+#Sorting
+#~~~~~~~
 
 
 x <- c(2, 32, 4, 16, 8)
@@ -183,26 +141,16 @@ x[order(x)]
 identical(sort(x), x[order(x)])
 
 
-year_order <- order(english_monarchs$start.of.reign)
-english_monarchs[year_order, ]
-
-
-arrange(english_monarchs, start.of.reign)
-
-
-(x <- sample(3, 7, replace = TRUE))
-rank(x)
-rank(x, ties.method = "first")
-
-
-Functional Programming
-~~~~~~~~~~~~~~~~~~~~~~
+#Functional Programming
+#~~~~~~~~~~~~~~~~~~~~~~
 
 
 ct2 <- deer_endocranial_volume$VolCT2  #for convenience of typing
-isnt.na <- Negate(is.na)
-identical(isnt.na(ct2), !is.na(ct2))
 
+ct2
+
+isnt.na <- Negate(is.na)
+isnt.na(ct2)
 
 Filter(isnt.na, ct2)
 
@@ -242,15 +190,3 @@ measurements_by_deer <- with(
 )
 head(measurements_by_deer)
 
-
-pmax2 <- function(x, y) ifelse(x >= y, x, y)
-
-
-Reduce(pmax2, measurements_by_deer)
-
-
-#Reduce("+", list(a, b, c, d, e))
-((((a + b) + c) + d) + e)
-
-
-mean(mean(mean(mean(a, b), c), d), e) != mean(a, b, c, d, e)

@@ -335,5 +335,3 @@ treatment <- gl(3, 2, labels = c("placebo", "drug A", "drug B"))
 gender <- gl(2, 1, 6, labels = c("female", "male"))
 
 interaction(treatment, gender)
-
-
