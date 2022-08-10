@@ -7,11 +7,15 @@ library(sqldf)
 
 sqldf('SELECT age, circumference FROM Orange WHERE Tree = 1 ORDER BY circumference ASC')
 
-
+help(sqldf)
 
 #
 sqldf("SELECT * FROM iris")
+
 iris1 <- sqldf('SELECT "Petal.Width" FROM iris')
+
+iris1
+
 sqldf('SELECT * FROM iris')
 
 

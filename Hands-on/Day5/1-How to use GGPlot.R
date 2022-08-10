@@ -10,6 +10,8 @@ data("midwest", package = "ggplot2")  # load the data
 
 # midwest <- read.csv("http://goo.gl/G1K41K") # alt source
 
+View(midwest)
+
 # Init Ggplot
 # area and poptotal are columns in 'midwest?
 # aes() function is used to specify the X and Y axes.
@@ -27,7 +29,7 @@ plot(g)
 
 #
 g <- ggplot(midwest, aes(x=area, y=poptotal)) + geom_point() + geom_smooth(method="lm")
-g1 <- g + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 1000000))  # zooms in
+g1 <- g + coord_cartesian(xlim=c(0,0.1), ylim=c(0, 500000))  # zooms in
 plot(g1)
 
 

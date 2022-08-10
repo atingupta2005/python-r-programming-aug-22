@@ -39,6 +39,8 @@ english_monarchs$name[multiple_rulers & !is.na(multiple_rulers)]
 
 individual_rulers <- str_split(english_monarchs$name, ", | and ")
 
+individual_rulers
+
 head(individual_rulers[sapply(individual_rulers, length) > 1])
 
 
@@ -107,11 +109,14 @@ install.packages("sqldf")
 
 
 library(sqldf)
+head(deer_endocranial_volume)
+
 subset(
   deer_endocranial_volume,
   VolCT > 400 | VolCT2 > 400,
   c(VolCT, VolCT2)
 )
+
 query <-
   "SELECT
       VolCT,
@@ -150,15 +155,24 @@ ct2 <- deer_endocranial_volume$VolCT2  #for convenience of typing
 ct2
 
 isnt.na <- Negate(is.na)
+
+?Negate
+
+isnt.na
+
 isnt.na(ct2)
 
 Filter(isnt.na, ct2)
 
 
-Position(isnt.na, ct2)
+Position(isnt.na, ct2, right=TRUE)
+Position(isnt.na, ct2, right=FALSE)
 
+ct2
+?Position
+?Find
 
-Find(isnt.na, ct2)
+Find(isnt.na, ct2, right=TRUE)
 
 
 get_volume <- function(ct, bead, lwh, finarelli, ct2, bead2, lwh2)

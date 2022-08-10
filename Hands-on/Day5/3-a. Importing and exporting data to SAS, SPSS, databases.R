@@ -20,7 +20,6 @@ write_sas(df, "df_sas.sas7bdat")
 #Export STATA file
 write_dta(df, "df_stata.dta")
 
-
 #
 #Read SPSS file
 read_sav("df_spss.sav")
